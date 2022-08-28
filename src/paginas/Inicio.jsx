@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Cliente } from '../componets/Cliente';
-
+import { useNavigate } from 'react-router-dom';
 export const Inicio = () => {
 	const [clientes, setClientes] = useState([]);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const listadoClientesAPI = async () => {
 			try {
-				const url = 'http://localhost:3000/clientes';
+				const url = `${import.meta.env.VITE_API_URL}`;
 				const repuesta = await fetch(url);
 				const resultado = await repuesta.json();
 				setClientes(resultado);
@@ -24,7 +25,7 @@ export const Inicio = () => {
 		);
 		if (confirmar) {
 			try {
-				const url = `http://localhost:3000/clientes/${id}`;
+				const url = `${import.meta.env.VITE_API_URL}/${id}}`;
 				const resp = await fetch(url, {
 					method: 'DELETE',
 				});

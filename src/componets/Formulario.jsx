@@ -12,14 +12,16 @@ export const Formulario = ({ cliente, cargando }) => {
 		try {
 			let resp;
 			if (cliente.id) {
-				const url = `http://localhost:3000/clientes/${cliente.id}`;
+				const url = `${import.meta.env.VITE_API_URL}/${
+					cliente.id
+				}`;
 				resp = await fetch(url, {
 					method: 'PUT',
 					body: JSON.stringify(value),
 					headers: { 'Content-Type': 'application/json' },
 				});
 			} else {
-				const url = 'http://localhost:3000/clientes';
+				const url = `${import.meta.env.VITE_API_URL}`;
 				resp = await fetch(url, {
 					method: 'POST',
 					body: JSON.stringify(value),
